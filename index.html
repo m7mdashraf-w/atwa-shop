@@ -29,19 +29,34 @@
         }
         @media (max-width: 600px) {
             .container {
-                padding: 0 6px;
+                padding: 0 0;
+                width: 100%;
+                max-width: 100vw;
             }
             .product-grid {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 1.2rem;
                 min-height: 0;
             }
             .product-card {
                 min-height: 0;
                 height: auto;
+                margin: 0 8px 18px 8px;
+                padding: 10px 7px 14px 7px;
+                box-sizing: border-box;
+                border-radius: 14px;
+            }
+            .product-image {
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
             .product-image img {
                 height: 160px;
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
+                display: block;
             }
             header nav {
                 flex-direction: column;
