@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atwa.Eg - ملابس عصرية راقية</title>
+    <meta name="description" content="اكتشف مجموعة Atwa.Eg من ملابس الشارع العصرية بجودة عالية وأناقة لا مثيل لها.">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            direction: rtl;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        .nav-links {
+            display: flex;
+            flex-direction: row-reverse;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: #ff6b6b; }
+        .cart-icon {
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .cart-icon:hover { transform: scale(1.1); }
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+        .products {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            min-height: 660px;
+        }
+        .product-card {
+            min-height: 340px;
+            height: 100%;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-image {
+            position: relative;
+        }
+        .product-image img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            border-radius: 10px;
+            transition: opacity 0.4s;
+        }
+        .product-image img.fade {
+            opacity: 0;
+        }
+        .img-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.3);
+            border: none;
+            color: #fff;
+            font-size: 1.7rem;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            z-index: 2;
+            transition: background 0.2s;
+        }
+        .img-arrow:hover {
+            background: #ff6b6b;
+        }
+        .img-arrow.left { left: 10px; }
+        .img-arrow.right { right: 10px; }
+        .product-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.5rem;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .add-to-cart {
+            width: 100%;
+            padding: 12px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .add-to-cart:hover {
+            background: #ff6b6b;
+            transform: translateY(-2px);
+        }
+        .about {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-align: center;
+        }
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        .about p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+            font-weight: 700;
+        }
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .footer-section a:hover {
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Atwa.Eg</a>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#products">المنتجات</a></li>
+                <li><a href="#about">من نحن</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+            <div class="cart-icon" aria-label="عربة التسوق" role="button">🛒</div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Atwa.Eg</h1>
+            <p>ارتقي بأناقتك مع أزياء الشارع الراقية</p>
+            <a href="#products" class="cta-button">تسوق المجموعة</a>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">مجموعتنا</h2>
+            <div class="product-grid">
+                <div class="product-card" data-images='["The product/1.jpg","The product/2.jpg","The product/3.jpg","The product/4.jpg","The product/5.jpg","The product/6.jpg"]'>
+                    <div class="product-image">
+                        <button class="img-arrow left">&#8592;</button>
+                        <img src="The product/1.jpg" alt="تيشيرت خامة بولڤار قطن">
+                        <button class="img-arrow right">&#8594;</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">تيشيرت خامة بولڤار قطن</h3>
+                        <p class="product-price">999 جنيه</p>
+                        <button class="add-to-cart">أضف للعربة</button>
+                    </div>
+                </div>
+                <div class="product-card" data-images='["The product/7.jpg","The product/8.jpg","The product/9.jpg","The product/10.jpg","The product/11.jpg","The product/12.jpg"]'>
+                    <div class="product-image">
+                        <button class="img-arrow left">&#8592;</button>
+                        <img src="The product/7.jpg" alt="تيشيرت بألوان مختلفة">
+                        <button class="img-arrow right">&#8594;</button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">تيشيرت بألوان مختلفة</h3>
+                        <p class="product-price">999 جنيه</p>
+                        <button class="add-to-cart">أضف للعربة</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>About Atwa Eg</h2>
+                <p>نحن أكثر من مجرد علامة تجارية للملابس - نحن أسلوب حياة...</p>
+                <p>كل قطعة في مجموعتنا مصنوعة بعناية فائقة باستخدام أجود الخامات...</p>
+                <p>انضم إلى مجتمع أطوة واكتشف ما يعنيه أن ترتدي ثقتك بنفسك.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <p>البريد الإلكتروني: hello@atwa.eg</p>
+                    <p>الهاتف: +20 100 123 4567</p>
+                    <p>العنوان: دمياط, مصر</p>
+                </div>
+                <div class="footer-section">
+                    <h3>تابعنا</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link facebook">📘 فيس بوك</a>
+                        <a href="https://www.instagram.com/atwa.eg?igsh=MTZqOGdua3N6ZGprNA==" class="social-link instagram" target="_blank" rel="noopener">📷 إنستجرام</a>
+                        <a href="#" class="social-link twitter">🐦 تويتر</a>
+                        <a href="#" class="social-link whatsapp">💬 واتساب</a>
+                    </div>
+                </div>
+            </div>
+            <p>&copy; 2025 Atwa.Eg. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Cart -->
+    <div id="cart-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);z-index:2000;justify-content:center;align-items:center;">
+        <div id="cart-modal-box" style="background:#fff;padding:2rem 1.5rem;border-radius:16px;max-width:500px;min-width:320px;position:relative;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.18);">
+            <h2 style="margin-bottom:1.5rem;font-size:1.5rem;color:#764ba2;">🛒 عربة التسوق</h2>
+            <div id="cart-content" style="margin-bottom:1.5rem;font-size:1.1rem;text-align:right;"></div>
+            <div id="cart-total" style="font-weight:bold;font-size:1.2rem;margin-bottom:1.5rem;text-align:left;"></div>
+            <button id="checkout-btn" style="padding:0.7rem 2.5rem;background:linear-gradient(45deg,#ff6b6b,#ff8e8e);color:#fff;border:none;border-radius:8px;font-size:1.1rem;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px #ff6b6b33;margin-bottom:1rem;">إتمام الطلب</button>
+            <button id="close-cart-modal" style="padding:0.5rem 2rem;background:#764ba2;color:#fff;border:none;border-radius:8px;font-size:1rem;cursor:pointer;">إغلاق</button>
+        </div>
+    </div>
+    <style>
+        #cart-modal-box::-webkit-scrollbar {width: 8px;}
+        #cart-modal-box {max-height: 90vh;overflow-y: auto;}
+        .cart-item-row {display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;border-bottom:1px solid #eee;padding-bottom:1rem;}
+        .cart-item-img {width:60px;height:60px;object-fit:cover;border-radius:8px;border:1px solid #eee;}
+        .cart-item-info {flex:1;}
+        .cart-item-title {font-weight:bold;font-size:1.05rem;margin-bottom:0.2rem;}
+        .cart-item-price {color:#ff6b6b;font-weight:bold;}
+        .cart-item-qty {display:flex;align-items:center;gap:0.5rem;}
+        .cart-qty-btn {background:#f3f3f3;border:none;border-radius:50%;width:28px;height:28px;font-size:1.1rem;cursor:pointer;font-weight:bold;transition:background 0.2s;}
+        .cart-qty-btn:hover {background:#ff6b6b;color:#fff;}
+        .cart-remove-btn {background:none;border:none;color:#ff6b6b;font-size:1.2rem;cursor:pointer;margin-right:0.5rem;}
+    </style>
+    <script>
+        // حفظ المنتجات في localStorage
+        function getCartProducts() {
+            return JSON.parse(localStorage.getItem('cartProducts') || '[]');
+        }
+        function setCartProducts(products) {
+            localStorage.setItem('cartProducts', JSON.stringify(products));
+        }
+        // تغيير صور المنتج عبر الأسهم مع انتقال سلس
+        document.querySelectorAll('.product-card').forEach(card => {
+            const images = JSON.parse(card.getAttribute('data-images'));
+            const img = card.querySelector('img');
+            let idx = 0;
+            function changeImg(newIdx) {
+                img.classList.add('fade');
+                setTimeout(() => {
+                    idx = newIdx;
+                    img.src = images[idx];
+                    img.classList.remove('fade');
+                }, 250);
+            }
+            card.querySelector('.img-arrow.left').addEventListener('click', function(e) {
+                e.stopPropagation();
+                changeImg((idx - 1 + images.length) % images.length);
+            });
+            card.querySelector('.img-arrow.right').addEventListener('click', function(e) {
+                e.stopPropagation();
+                changeImg((idx + 1) % images.length);
+            });
+        });
+        // عربة تسوق متقدمة
+        function getCartProducts() {
+            return JSON.parse(localStorage.getItem('cartProductsV2') || '[]');
+        }
+        function setCartProducts(products) {
+            localStorage.setItem('cartProductsV2', JSON.stringify(products));
+        }
+        function renderCart() {
+            const cartContent = document.getElementById('cart-content');
+            const cartTotal = document.getElementById('cart-total');
+            let products = getCartProducts();
+            if (products.length === 0) {
+                cartContent.innerHTML = '<div style="text-align:center;color:#888;">العربة فارغة</div>';
+                cartTotal.textContent = '';
+                return;
+            }
+            let total = 0;
+            cartContent.innerHTML = products.map((item, i) => `
+                <div class="cart-item-row">
+                    <img class="cart-item-img" src="${item.img}" alt="${item.name}">
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">${item.price} جنيه</div>
+                        <div class="cart-item-qty">
+                            <button class="cart-qty-btn" data-action="dec" data-idx="${i}">-</button>
+                            <span>${item.qty}</span>
+                            <button class="cart-qty-btn" data-action="inc" data-idx="${i}">+</button>
+                            <button class="cart-remove-btn" data-idx="${i}" title="حذف المنتج">✕</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            total = products.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            cartTotal.textContent = `الإجمالي: ${total} جنيه`;
+        }
+        // إضافة منتج للعربة
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function () {
+                const card = this.closest('.product-card');
+                const name = card.querySelector('.product-name').textContent;
+                const price = parseInt(card.querySelector('.product-price').textContent.replace(/[^\d]/g, ''));
+                const img = card.querySelector('img').getAttribute('src');
+                let products = getCartProducts();
+                let idx = products.findIndex(p => p.name === name && p.img === img);
+                if (idx > -1) {
+                    products[idx].qty += 1;
+                } else {
+                    products.push({ name, price, img, qty: 1 });
+                }
+                setCartProducts(products);
+                const originalText = this.textContent;
+                this.innerHTML = '✅ تم الإضافة!';
+                this.style.background = '#4CAF50';
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.style.background = '#333';
+                }, 1500);
+            });
+        });
+        // Modal logic
+        const cartModal = document.getElementById('cart-modal');
+        const cartContent = document.getElementById('cart-content');
+        const cartTotal = document.getElementById('cart-total');
+        const closeCartModal = document.getElementById('close-cart-modal');
+        document.querySelector('.cart-icon').addEventListener('click', () => {
+            renderCart();
+            cartModal.style.display = 'flex';
+        });
+        closeCartModal.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+        // إغلاق المودال عند الضغط خارج الصندوق
+        cartModal.addEventListener('click', (e) => {
+            if (e.target === cartModal) cartModal.style.display = 'none';
+        });
+        // التحكم في الكمية والحذف
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('cart-qty-btn')) {
+                let products = getCartProducts();
+                const idx = parseInt(e.target.getAttribute('data-idx'));
+                if (e.target.getAttribute('data-action') === 'inc') {
+                    products[idx].qty += 1;
+                } else if (e.target.getAttribute('data-action') === 'dec') {
+                    if (products[idx].qty > 1) products[idx].qty -= 1;
+                }
+                setCartProducts(products);
+                renderCart();
+            }
+            if (e.target.classList.contains('cart-remove-btn')) {
+                let products = getCartProducts();
+                const idx = parseInt(e.target.getAttribute('data-idx'));
+                products.splice(idx, 1);
+                setCartProducts(products);
+                renderCart();
+            }
+            if (e.target.id === 'checkout-btn') {
+                alert('تم إرسال طلبك بنجاح! (تجريبي)');
+                setCartProducts([]);
+                renderCart();
+                cartModal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
