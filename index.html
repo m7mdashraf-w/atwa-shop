@@ -98,6 +98,11 @@
                 font-size: 1rem;
                 padding: 10px;
             }
+            #product-modal-box {
+                min-width: 98vw !important;
+                max-width: 99vw !important;
+                padding: 1rem 2px !important;
+            }
         }
         header {
             position: fixed;
@@ -206,6 +211,7 @@
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
         }
         .product-image {
             position: relative;
@@ -213,10 +219,11 @@
         .product-image img {
             width: 100%;
             height: 220px;
-            object-fit: cover;
+            object-fit: contain;
             display: block;
             border-radius: 10px;
             transition: opacity 0.4s;
+            background: #fff;
         }
         .product-image img.fade {
             opacity: 0;
@@ -326,6 +333,78 @@
         .footer-section a:hover {
             color: #ff6b6b;
         }
+        /* Modal for product details */
+        #product-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.5);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+        #product-modal-box {
+            background: #fff;
+            padding: 2.5rem 2.5rem;
+            border-radius: 20px;
+            max-width: 700px;
+            min-width: 400px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.22);
+        }
+        #product-modal-close {
+            position: absolute;
+            top: 10px; left: 10px;
+            background: #764ba2;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 32px; height: 32px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        #product-modal-img {
+            width: 100%;
+            max-width: 320px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        #product-modal-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        #product-modal-price {
+            font-size: 1.2rem;
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        #product-modal-desc {
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 1.2rem;
+        }
+        #product-modal-add-to-cart {
+            width: 100%;
+            padding: 12px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s ease;
+        }
+        #product-modal-add-to-cart:hover {
+            background: #ff6b6b;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -338,7 +417,7 @@
                 <li><a href="#about">من نحن</a></li>
                 <li><a href="#contact">تواصل معنا</a></li>
             </ul>
-            <div class="cart-icon" aria-label="عربة التسوق" role="button">🛒</div>
+            <div class="cart-icon" aria-label="عربة التسوق" role="button">🛒 العربة</div>
         </nav>
     </header>
 
@@ -355,11 +434,11 @@
         <div class="container">
             <h2 class="section-title">مجموعتنا</h2>
             <div class="product-grid">
-                <div class="product-card" data-images='["The product/1/1.jpg","The product/1/2.jpg","The product/1/3.jpg","The product/1/4.jpg","The product/1/5.jpg","The product/1/6.jpg"]'>
-                    <div class="product-image">
-                        <button class="img-arrow left">&#8592;</button>
+                <div class="product-card" data-images='["The product/1/1.jpg","The product/1/2.jpg","The product/1/3.jpg","The product/1/4.jpg","The product/1/5.jpg","The product/1/6.jpg"]' data-desc="تيشيرت خامة بولڤا�� قطن عالي الجودة، مريح وأنيق للاستخدام اليومي.">
+                    <div class="product-image" style="position:relative;">
+                        <button class="img-arrow left" style="left:10px;">&#8592;</button>
                         <img src="The product/1/1.jpg" alt="تيشيرت خامة ب��لڤار قطن">
-                        <button class="img-arrow right">&#8594;</button>
+                        <button class="img-arrow right" style="right:10px;">&#8594;</button>
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">تيشيرت خامة بولڤار قطن</h3>
@@ -367,11 +446,11 @@
                         <button class="add-to-cart">أضف للعربة</button>
                     </div>
                 </div>
-                <div class="product-card" data-images='["The product/2/1.jpg","The product/2/2.jpg","The product/2/3.jpg","The product/2/4.jpg","The product/2/5.jpg","The product/2/6.jpg"]'>
-                    <div class="product-image">
-                        <button class="img-arrow left">&#8592;</button>
+                <div class="product-card" data-images='["The product/2/1.jpg","The product/2/2.jpg","The product/2/3.jpg","The product/2/4.jpg","The product/2/5.jpg","The product/2/6.jpg"]' data-desc="تيشيرت بألوان متعددة ليناسب جميع الأذواق، خامة قطنية مميزة.">
+                    <div class="product-image" style="position:relative;">
+                        <button class="img-arrow left" style="left:10px;">&#8592;</button>
                         <img src="The product/2/1.jpg" alt="تيشيرت بألوان مختلفة">
-                        <button class="img-arrow right">&#8594;</button>
+                        <button class="img-arrow right" style="right:10px;">&#8594;</button>
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">تيشيرت بألوان مختلفة</h3>
@@ -379,11 +458,11 @@
                         <button class="add-to-cart">أضف للعربة</button>
                     </div>
                 </div>
-                <div class="product-card" data-images='["The product/3/1.jpg","The product/3/2.jpg","The product/3/3.jpg","The product/3/4.jpg","The product/3/5.jpg","The product/3/6.jpg","The product/3/7.jpg","The product/3/8.jpg","The product/3/9.jpg"]'>
-                    <div class="product-image">
-                        <button class="img-arrow left">&#8592;</button>
+                <div class="product-card" data-images='["The product/3/1.jpg","The product/3/2.jpg","The product/3/3.jpg","The product/3/4.jpg","The product/3/5.jpg","The product/3/6.jpg","The product/3/7.jpg","The product/3/8.jpg","The product/3/9.jpg"]' data-desc="تيشيرت أنيق بتصميم عصري يناسب جميع المناسبات.">
+                    <div class="product-image" style="position:relative;">
+                        <button class="img-arrow left" style="left:10px;">&#8592;</button>
                         <img src="The product/3/1.jpg" alt="تيشيرت جميل">
-                        <button class="img-arrow right">&#8594;</button>
+                        <button class="img-arrow right" style="right:10px;">&#8594;</button>
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">تيشيرت جميل</h3>
@@ -452,6 +531,26 @@
         .cart-qty-btn:hover {background:#ff6b6b;color:#fff;}
         .cart-remove-btn {background:none;border:none;color:#ff6b6b;font-size:1.2rem;cursor:pointer;margin-right:0.5rem;}
     </style>
+    <!-- Modal for Product Details -->
+    <div id="product-modal">
+        <div id="product-modal-box">
+            <button id="product-modal-close" title="إغلاق">✕</button>
+            <div style="position:relative;display:inline-block;width:100%;max-width:320px;">
+                <button id="modal-arrow-left" class="img-arrow left" style="position:absolute;top:50%;left:10px;transform:translateY(-50%);z-index:2;">&#8592;</button>
+                <img id="product-modal-img" src="" alt="صورة المنتج" style="cursor:zoom-in;display:block;width:100%;max-width:320px;">
+                <button id="modal-arrow-right" class="img-arrow right" style="position:absolute;top:50%;right:10px;transform:translateY(-50%);z-index:2;">&#8594;</button>
+            </div>
+            <div id="product-modal-name"></div>
+            <div id="product-modal-price"></div>
+            <div id="product-modal-desc"></div>
+            <button id="product-modal-add-to-cart">أضف للعربة</button>
+        </div>
+    </div>
+    <!-- Modal for Enlarged Product Image -->
+    <div id="img-zoom-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);z-index:4000;justify-content:center;align-items:center;">
+        <span id="img-zoom-close" style="position:absolute;top:30px;left:30px;font-size:2.2rem;color:#fff;cursor:pointer;font-weight:bold;z-index:4100;">✕</span>
+        <img id="img-zoom-img" src="" alt="تكبير الصورة" style="max-width:90vw;max-height:90vh;border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,0.25);">
+    </div>
     <script>
         // حفظ المنتجات في localStorage
         function getCartProducts() {
@@ -460,26 +559,51 @@
         function setCartProducts(products) {
             localStorage.setItem('cartProducts', JSON.stringify(products));
         }
-        // تغيير صور المنتج عبر الأسهم مع انتقال سلس
+        // تقليب صور المنتج داخل نافذة التفاصيل فقط
+        let modalImages = [];
+        let modalImgIdx = 0;
+        const modalImg = document.getElementById('product-modal-img');
+        const modalArrowLeft = document.getElementById('modal-arrow-left');
+        const modalArrowRight = document.getElementById('modal-arrow-right');
+        function updateModalImg() {
+            if (modalImages.length > 0) {
+                modalImg.src = modalImages[modalImgIdx];
+            }
+        }
+        if (modalArrowLeft && modalArrowRight) {
+            modalArrowLeft.addEventListener('click', function(e) {
+                e.stopPropagation();
+                modalImgIdx = (modalImgIdx - 1 + modalImages.length) % modalImages.length;
+                updateModalImg();
+            });
+            modalArrowRight.addEventListener('click', function(e) {
+                e.stopPropagation();
+                modalImgIdx = (modalImgIdx + 1) % modalImages.length;
+                updateModalImg();
+            });
+        }
+        // تقليب صور المنتج في الصفحة الرئيسية
         document.querySelectorAll('.product-card').forEach(card => {
             const images = JSON.parse(card.getAttribute('data-images'));
             const img = card.querySelector('img');
             let idx = 0;
-            function changeImg(newIdx) {
+            card.querySelector('.img-arrow.left').addEventListener('click', function(e) {
+                e.stopPropagation();
+                idx = (idx - 1 + images.length) % images.length;
                 img.classList.add('fade');
                 setTimeout(() => {
-                    idx = newIdx;
                     img.src = images[idx];
                     img.classList.remove('fade');
                 }, 250);
-            }
-            card.querySelector('.img-arrow.left').addEventListener('click', function(e) {
-                e.stopPropagation();
-                changeImg((idx - 1 + images.length) % images.length);
             });
             card.querySelector('.img-arrow.right').addEventListener('click', function(e) {
                 e.stopPropagation();
-                changeImg((idx + 1) % images.length);
+                idx = (idx + 1) % images.length;
+                img.classList.add('fade');
+                setTimeout(() => {
+                    img.src = images[idx];
+                    img.classList.remove('fade');
+                }, 250);
             });
         });
         // عربة تسوق متقدمة
@@ -519,7 +643,8 @@
         }
         // إضافة منتج للعربة
         document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function () {
+            button.addEventListener('click', function (e) {
+                e.stopPropagation();
                 const card = this.closest('.product-card');
                 const name = card.querySelector('.product-name').textContent;
                 const price = parseInt(card.querySelector('.product-price').textContent.replace(/[^\d]/g, ''));
@@ -583,6 +708,76 @@
                 renderCart();
                 cartModal.style.display = 'none';
             }
+        });
+        // Modal for product details
+        const productModal = document.getElementById('product-modal');
+        const productModalBox = document.getElementById('product-modal-box');
+        const productModalClose = document.getElementById('product-modal-close');
+        const productModalImg = document.getElementById('product-modal-img');
+        const productModalName = document.getElementById('product-modal-name');
+        const productModalPrice = document.getElementById('product-modal-price');
+        const productModalDesc = document.getElementById('product-modal-desc');
+        const productModalAddToCart = document.getElementById('product-modal-add-to-cart');
+        let currentProduct = null;
+        document.querySelectorAll('.product-card').forEach(card => {
+            // حفظ مؤشر الصورة الحالية في خاصية على العنصر
+            card._currentImgIdx = 0;
+            const images = JSON.parse(card.getAttribute('data-images'));
+            const img = card.querySelector('img');
+            card.addEventListener('click', function(e) {
+                // تجاهل الضغط على زر إضافة للعربة فقط
+                if (e.target.classList.contains('add-to-cart')) return;
+                const name = card.querySelector('.product-name').textContent;
+                const price = card.querySelector('.product-price').textContent;
+                const desc = card.getAttribute('data-desc') || '';
+                // استخدم الصور للمودال
+                modalImages = images;
+                modalImgIdx = 0;
+                updateModalImg();
+                productModalName.textContent = name;
+                productModalPrice.textContent = price;
+                productModalDesc.textContent = desc;
+                productModal.style.display = 'flex';
+                currentProduct = { name, price: parseInt(price.replace(/[^\d]/g, '')), img: images[0] };
+            });
+        });
+        productModalClose.addEventListener('click', function() {
+            productModal.style.display = 'none';
+        });
+        productModal.addEventListener('click', function(e) {
+            if (e.target === productModal) productModal.style.display = 'none';
+        });
+        productModalAddToCart.addEventListener('click', function() {
+            if (!currentProduct) return;
+            let products = getCartProducts();
+            let idx = products.findIndex(p => p.name === currentProduct.name && p.img === currentProduct.img);
+            if (idx > -1) {
+                products[idx].qty += 1;
+            } else {
+                products.push({ ...currentProduct, qty: 1 });
+            }
+            setCartProducts(products);
+            const originalText = this.textContent;
+            this.innerHTML = '✅ تم الإضافة!';
+            this.style.background = '#4CAF50';
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.style.background = '#333';
+            }, 1500);
+        });
+        // تكبير صورة المنتج في نافذة التفاصيل
+        const imgZoomModal = document.getElementById('img-zoom-modal');
+        const imgZoomImg = document.getElementById('img-zoom-img');
+        const imgZoomClose = document.getElementById('img-zoom-close');
+        productModalImg.addEventListener('click', function() {
+            imgZoomImg.src = this.src;
+            imgZoomModal.style.display = 'flex';
+        });
+        imgZoomClose.addEventListener('click', function() {
+            imgZoomModal.style.display = 'none';
+        });
+        imgZoomModal.addEventListener('click', function(e) {
+            if (e.target === imgZoomModal) imgZoomModal.style.display = 'none';
         });
     </script>
 </body>
